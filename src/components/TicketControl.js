@@ -30,7 +30,7 @@ class TicketControl extends React.Component {
 
   updateTicketElapsedWaitTime = () => {
     const { dispatch } = this.props;
-    Object.values(this.props.masterTicketList).forEach(ticket => {
+    Object.values(this.props.mainTicketList).forEach(ticket => {
       const newFormattedWaitTime = ticket.timeOpen.fromNow(true);
       const action = a.updateTime(ticket.id, newFormattedWaitTime);
       dispatch(action);
@@ -59,7 +59,7 @@ class TicketControl extends React.Component {
   }
 
   handleChangingSelectedTicket = (id) => {
-    const selectedTicket = this.props.masterTicketList[id];
+    const selectedTicket = this.props.mainTicketList[id];
     this.setState({selectedTicket: selectedTicket});
   }
 
@@ -101,7 +101,7 @@ class TicketControl extends React.Component {
       currentlyVisibleState = <NewTicketForm onNewTicketCreation={this.handleAddingNewTicketToList}  />;
       buttonText = "Return to Ticket List";
     } else {
-      currentlyVisibleState = <TicketList ticketList={this.props.masterTicketList} onTicketSelection={this.handleChangingSelectedTicket} />;
+      currentlyVisibleState = <TicketList ticketList={this.props.mainTicketList} onTicketSelection={this.handleChangingSelectedTicket} />;
       buttonText = "Add Ticket";
     }
     return (
@@ -115,12 +115,12 @@ class TicketControl extends React.Component {
 }
 
 TicketControl.propTypes = {
-  masterTicketList: PropTypes.object
+  mainTicketList: PropTypes.object
 };
 
 const mapStateToProps = state => {
   return {
-    masterTicketList: state.masterTicketList,
+    mainTicketList: state.mainTicketList,
     formVisibleOnPage: state.formVisibleOnPage
   }
 }

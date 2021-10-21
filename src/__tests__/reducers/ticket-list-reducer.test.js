@@ -27,7 +27,7 @@ describe('ticketListReducer', () => {
     expect(ticketListReducer({}, { type: null })).toEqual({});
   });
 
-  test('Should successfully add new ticket data to masterTicketList', () => {
+  test('Should successfully add new ticket data to mainTicketList', () => {
     const { names, location, issue, id } = ticketData;
     action = {
       type: c.ADD_TICKET,
